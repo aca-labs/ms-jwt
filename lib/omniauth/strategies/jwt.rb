@@ -91,5 +91,7 @@ module OmniAuth
         request.cookies
       end
     end
+
+    class Jwt < JWT; end
   end
 end
