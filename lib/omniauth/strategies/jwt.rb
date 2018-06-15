@@ -81,6 +81,8 @@ module OmniAuth
         (options.required_claims || []).each do |field|
           raise ClaimInvalid.new("Missing required '#{field}' claim.") if !@decoded.key?(field.to_s)
         end
+        
+        @decoded['token'] = data
       end
 
       def params
