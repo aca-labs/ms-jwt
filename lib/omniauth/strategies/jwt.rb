@@ -48,8 +48,10 @@ module OmniAuth
       attr_reader :decoded
 
       def callback_phase
-        if cookies['id_token'] || params['id_token']
-          parse_token(cookies['id_token'] || params['id_token'])
+        id_token = cookies['id_token'] || params['id_token']
+        if id_token
+          @raw_token = id_token
+          parse_token(id_token)
           super
         else
           fail! :invalid_credentials
@@ -63,7 +65,7 @@ module OmniAuth
       end
 
       extra do
-        {:raw_info => decoded}
+        {:raw_info => decoded, raw_token: @raw_token}
       end
 
       info do
