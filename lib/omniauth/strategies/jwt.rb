@@ -39,7 +39,7 @@ module OmniAuth
 
       option :uid_claim, 'upn'
       option :required_claims, %w(given_name family_name)
-      option :info_map, {"name" => proc { |raw| "#{raw['given_name']} #{raw['lastName']}".titleize }, "email" => "upn"}
+      option :info_map, {"name" => proc { |raw| "#{raw['given_name']} #{raw['family_name']}".titleize }, "email" => "upn"}
 
       def request_phase
         redirect callback_url
